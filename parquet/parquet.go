@@ -20,9 +20,6 @@ var _ = context.Background
 var _ = reflect.DeepEqual
 var _ = bytes.Equal
 
-// Bumping Thrift version leads to error due to missing context
-ctx := context.Background()
-
 //Types supported by Parquet.  These types are intended to be used in combination
 //with the encodings to control the on disk storage format.
 //For example INT16 is not included as a type since a good encoding of INT32
@@ -631,6 +628,12 @@ func (p *Statistics) IsSetMinValue() bool {
 }
 
 func (p *Statistics) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -719,6 +722,12 @@ func (p *Statistics) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *Statistics)  ReadField1(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadBinary(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
@@ -728,6 +737,9 @@ func (p *Statistics)  ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *Statistics)  ReadField2(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadBinary(ctx); err != nil {
   return thrift.PrependError("error reading field 2: ", err)
 } else {
@@ -737,6 +749,9 @@ func (p *Statistics)  ReadField2(iprot thrift.TProtocol) error {
 }
 
 func (p *Statistics)  ReadField3(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI64(ctx); err != nil {
   return thrift.PrependError("error reading field 3: ", err)
 } else {
@@ -746,6 +761,9 @@ func (p *Statistics)  ReadField3(iprot thrift.TProtocol) error {
 }
 
 func (p *Statistics)  ReadField4(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI64(ctx); err != nil {
   return thrift.PrependError("error reading field 4: ", err)
 } else {
@@ -755,6 +773,9 @@ func (p *Statistics)  ReadField4(iprot thrift.TProtocol) error {
 }
 
 func (p *Statistics)  ReadField5(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadBinary(ctx); err != nil {
   return thrift.PrependError("error reading field 5: ", err)
 } else {
@@ -764,6 +785,9 @@ func (p *Statistics)  ReadField5(iprot thrift.TProtocol) error {
 }
 
 func (p *Statistics)  ReadField6(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadBinary(ctx); err != nil {
   return thrift.PrependError("error reading field 6: ", err)
 } else {
@@ -878,6 +902,9 @@ func NewStringType() *StringType {
 }
 
 func (p *StringType) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -929,6 +956,9 @@ func NewUUIDType() *UUIDType {
 }
 
 func (p *UUIDType) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -980,6 +1010,9 @@ func NewMapType() *MapType {
 }
 
 func (p *MapType) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -1031,6 +1064,9 @@ func NewListType() *ListType {
 }
 
 func (p *ListType) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -1082,6 +1118,9 @@ func NewEnumType() *EnumType {
 }
 
 func (p *EnumType) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -1133,6 +1172,9 @@ func NewDateType() *DateType {
 }
 
 func (p *DateType) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -1189,6 +1231,9 @@ func NewNullType() *NullType {
 }
 
 func (p *NullType) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -1260,6 +1305,9 @@ func (p *DecimalType) GetPrecision() int32 {
   return p.Precision
 }
 func (p *DecimalType) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -1318,6 +1366,9 @@ func (p *DecimalType) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *DecimalType)  ReadField1(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
@@ -1327,6 +1378,9 @@ func (p *DecimalType)  ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *DecimalType)  ReadField2(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 2: ", err)
 } else {
@@ -1385,6 +1439,9 @@ func NewMilliSeconds() *MilliSeconds {
 }
 
 func (p *MilliSeconds) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -1436,6 +1493,9 @@ func NewMicroSeconds() *MicroSeconds {
 }
 
 func (p *MicroSeconds) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -1487,6 +1547,9 @@ func NewNanoSeconds() *NanoSeconds {
 }
 
 func (p *NanoSeconds) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -1593,6 +1656,9 @@ func (p *TimeUnit) IsSetNANOS() bool {
 }
 
 func (p *TimeUnit) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -1651,6 +1717,9 @@ func (p *TimeUnit) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *TimeUnit)  ReadField1(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   p.MILLIS = &MilliSeconds{}
   if err := p.MILLIS.Read(iprot); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.MILLIS), err)
@@ -1659,6 +1728,9 @@ func (p *TimeUnit)  ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *TimeUnit)  ReadField2(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   p.MICROS = &MicroSeconds{}
   if err := p.MICROS.Read(iprot); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.MICROS), err)
@@ -1667,6 +1739,9 @@ func (p *TimeUnit)  ReadField2(iprot thrift.TProtocol) error {
 }
 
 func (p *TimeUnit)  ReadField3(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   p.NANOS = &NanoSeconds{}
   if err := p.NANOS.Read(iprot); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.NANOS), err)
@@ -1770,6 +1845,9 @@ func (p *TimestampType) IsSetUnit() bool {
 }
 
 func (p *TimestampType) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -1828,6 +1906,9 @@ func (p *TimestampType) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *TimestampType)  ReadField1(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadBool(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
@@ -1837,6 +1918,9 @@ func (p *TimestampType)  ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *TimestampType)  ReadField2(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   p.Unit = &TimeUnit{}
   if err := p.Unit.Read(iprot); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.Unit), err)
@@ -1918,6 +2002,9 @@ func (p *TimeType) IsSetUnit() bool {
 }
 
 func (p *TimeType) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -1976,6 +2063,9 @@ func (p *TimeType) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *TimeType)  ReadField1(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadBool(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
@@ -1985,6 +2075,9 @@ func (p *TimeType)  ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *TimeType)  ReadField2(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   p.Unit = &TimeUnit{}
   if err := p.Unit.Read(iprot); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.Unit), err)
@@ -2061,6 +2154,9 @@ func (p *IntType) GetIsSigned() bool {
   return p.IsSigned
 }
 func (p *IntType) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -2119,6 +2215,9 @@ func (p *IntType) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *IntType)  ReadField1(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadByte(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
@@ -2129,6 +2228,9 @@ func (p *IntType)  ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *IntType)  ReadField2(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadBool(ctx); err != nil {
   return thrift.PrependError("error reading field 2: ", err)
 } else {
@@ -2189,6 +2291,9 @@ func NewJsonType() *JsonType {
 }
 
 func (p *JsonType) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -2243,6 +2348,9 @@ func NewBsonType() *BsonType {
 }
 
 func (p *BsonType) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -2516,6 +2624,9 @@ func (p *LogicalType) IsSetUUID() bool {
 }
 
 func (p *LogicalType) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -2674,6 +2785,9 @@ func (p *LogicalType) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *LogicalType)  ReadField1(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   p.STRING = &StringType{}
   if err := p.STRING.Read(iprot); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.STRING), err)
@@ -2682,6 +2796,9 @@ func (p *LogicalType)  ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *LogicalType)  ReadField2(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   p.MAP = &MapType{}
   if err := p.MAP.Read(iprot); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.MAP), err)
@@ -2690,6 +2807,9 @@ func (p *LogicalType)  ReadField2(iprot thrift.TProtocol) error {
 }
 
 func (p *LogicalType)  ReadField3(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   p.LIST = &ListType{}
   if err := p.LIST.Read(iprot); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.LIST), err)
@@ -2698,6 +2818,9 @@ func (p *LogicalType)  ReadField3(iprot thrift.TProtocol) error {
 }
 
 func (p *LogicalType)  ReadField4(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   p.ENUM = &EnumType{}
   if err := p.ENUM.Read(iprot); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.ENUM), err)
@@ -2706,6 +2829,9 @@ func (p *LogicalType)  ReadField4(iprot thrift.TProtocol) error {
 }
 
 func (p *LogicalType)  ReadField5(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   p.DECIMAL = &DecimalType{}
   if err := p.DECIMAL.Read(iprot); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.DECIMAL), err)
@@ -2714,6 +2840,9 @@ func (p *LogicalType)  ReadField5(iprot thrift.TProtocol) error {
 }
 
 func (p *LogicalType)  ReadField6(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   p.DATE = &DateType{}
   if err := p.DATE.Read(iprot); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.DATE), err)
@@ -2722,6 +2851,9 @@ func (p *LogicalType)  ReadField6(iprot thrift.TProtocol) error {
 }
 
 func (p *LogicalType)  ReadField7(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   p.TIME = &TimeType{}
   if err := p.TIME.Read(iprot); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.TIME), err)
@@ -2730,6 +2862,9 @@ func (p *LogicalType)  ReadField7(iprot thrift.TProtocol) error {
 }
 
 func (p *LogicalType)  ReadField8(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   p.TIMESTAMP = &TimestampType{}
   if err := p.TIMESTAMP.Read(iprot); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.TIMESTAMP), err)
@@ -2738,6 +2873,9 @@ func (p *LogicalType)  ReadField8(iprot thrift.TProtocol) error {
 }
 
 func (p *LogicalType)  ReadField10(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   p.INTEGER = &IntType{}
   if err := p.INTEGER.Read(iprot); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.INTEGER), err)
@@ -2746,6 +2884,9 @@ func (p *LogicalType)  ReadField10(iprot thrift.TProtocol) error {
 }
 
 func (p *LogicalType)  ReadField11(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   p.UNKNOWN = &NullType{}
   if err := p.UNKNOWN.Read(iprot); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.UNKNOWN), err)
@@ -2754,6 +2895,9 @@ func (p *LogicalType)  ReadField11(iprot thrift.TProtocol) error {
 }
 
 func (p *LogicalType)  ReadField12(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   p.JSON = &JsonType{}
   if err := p.JSON.Read(iprot); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.JSON), err)
@@ -2762,6 +2906,9 @@ func (p *LogicalType)  ReadField12(iprot thrift.TProtocol) error {
 }
 
 func (p *LogicalType)  ReadField13(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   p.BSON = &BsonType{}
   if err := p.BSON.Read(iprot); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.BSON), err)
@@ -2770,6 +2917,9 @@ func (p *LogicalType)  ReadField13(iprot thrift.TProtocol) error {
 }
 
 func (p *LogicalType)  ReadField14(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   p.UUID = &UUIDType{}
   if err := p.UUID.Read(iprot); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.UUID), err)
@@ -3131,6 +3281,9 @@ func (p *SchemaElement) IsSetLogicalType() bool {
 }
 
 func (p *SchemaElement) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -3264,6 +3417,9 @@ func (p *SchemaElement) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *SchemaElement)  ReadField1(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
@@ -3274,6 +3430,9 @@ func (p *SchemaElement)  ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *SchemaElement)  ReadField2(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 2: ", err)
 } else {
@@ -3283,6 +3442,9 @@ func (p *SchemaElement)  ReadField2(iprot thrift.TProtocol) error {
 }
 
 func (p *SchemaElement)  ReadField3(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 3: ", err)
 } else {
@@ -3293,6 +3455,9 @@ func (p *SchemaElement)  ReadField3(iprot thrift.TProtocol) error {
 }
 
 func (p *SchemaElement)  ReadField4(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadString(ctx); err != nil {
   return thrift.PrependError("error reading field 4: ", err)
 } else {
@@ -3302,6 +3467,9 @@ func (p *SchemaElement)  ReadField4(iprot thrift.TProtocol) error {
 }
 
 func (p *SchemaElement)  ReadField5(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 5: ", err)
 } else {
@@ -3311,6 +3479,9 @@ func (p *SchemaElement)  ReadField5(iprot thrift.TProtocol) error {
 }
 
 func (p *SchemaElement)  ReadField6(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 6: ", err)
 } else {
@@ -3321,6 +3492,9 @@ func (p *SchemaElement)  ReadField6(iprot thrift.TProtocol) error {
 }
 
 func (p *SchemaElement)  ReadField7(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 7: ", err)
 } else {
@@ -3330,6 +3504,9 @@ func (p *SchemaElement)  ReadField7(iprot thrift.TProtocol) error {
 }
 
 func (p *SchemaElement)  ReadField8(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 8: ", err)
 } else {
@@ -3339,6 +3516,9 @@ func (p *SchemaElement)  ReadField8(iprot thrift.TProtocol) error {
 }
 
 func (p *SchemaElement)  ReadField9(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 9: ", err)
 } else {
@@ -3348,6 +3528,9 @@ func (p *SchemaElement)  ReadField9(iprot thrift.TProtocol) error {
 }
 
 func (p *SchemaElement)  ReadField10(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   p.LogicalType = &LogicalType{}
   if err := p.LogicalType.Read(iprot); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.LogicalType), err)
@@ -3551,6 +3734,9 @@ func (p *DataPageHeader) IsSetStatistics() bool {
 }
 
 func (p *DataPageHeader) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -3649,6 +3835,9 @@ func (p *DataPageHeader) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *DataPageHeader)  ReadField1(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
@@ -3658,6 +3847,9 @@ func (p *DataPageHeader)  ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *DataPageHeader)  ReadField2(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 2: ", err)
 } else {
@@ -3668,6 +3860,9 @@ func (p *DataPageHeader)  ReadField2(iprot thrift.TProtocol) error {
 }
 
 func (p *DataPageHeader)  ReadField3(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 3: ", err)
 } else {
@@ -3678,6 +3873,9 @@ func (p *DataPageHeader)  ReadField3(iprot thrift.TProtocol) error {
 }
 
 func (p *DataPageHeader)  ReadField4(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 4: ", err)
 } else {
@@ -3688,6 +3886,9 @@ func (p *DataPageHeader)  ReadField4(iprot thrift.TProtocol) error {
 }
 
 func (p *DataPageHeader)  ReadField5(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   p.Statistics = &Statistics{}
   if err := p.Statistics.Read(iprot); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.Statistics), err)
@@ -3780,6 +3981,9 @@ func NewIndexPageHeader() *IndexPageHeader {
 }
 
 func (p *IndexPageHeader) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -3859,6 +4063,9 @@ func (p *DictionaryPageHeader) IsSetIsSorted() bool {
 }
 
 func (p *DictionaryPageHeader) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -3927,6 +4134,9 @@ func (p *DictionaryPageHeader) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *DictionaryPageHeader)  ReadField1(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
@@ -3936,6 +4146,9 @@ func (p *DictionaryPageHeader)  ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *DictionaryPageHeader)  ReadField2(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 2: ", err)
 } else {
@@ -3946,6 +4159,9 @@ func (p *DictionaryPageHeader)  ReadField2(iprot thrift.TProtocol) error {
 }
 
 func (p *DictionaryPageHeader)  ReadField3(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadBool(ctx); err != nil {
   return thrift.PrependError("error reading field 3: ", err)
 } else {
@@ -4089,6 +4305,9 @@ func (p *DataPageHeaderV2) IsSetStatistics() bool {
 }
 
 func (p *DataPageHeaderV2) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -4227,6 +4446,9 @@ func (p *DataPageHeaderV2) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *DataPageHeaderV2)  ReadField1(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
@@ -4236,6 +4458,9 @@ func (p *DataPageHeaderV2)  ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *DataPageHeaderV2)  ReadField2(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 2: ", err)
 } else {
@@ -4245,6 +4470,9 @@ func (p *DataPageHeaderV2)  ReadField2(iprot thrift.TProtocol) error {
 }
 
 func (p *DataPageHeaderV2)  ReadField3(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 3: ", err)
 } else {
@@ -4254,6 +4482,9 @@ func (p *DataPageHeaderV2)  ReadField3(iprot thrift.TProtocol) error {
 }
 
 func (p *DataPageHeaderV2)  ReadField4(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 4: ", err)
 } else {
@@ -4264,6 +4495,9 @@ func (p *DataPageHeaderV2)  ReadField4(iprot thrift.TProtocol) error {
 }
 
 func (p *DataPageHeaderV2)  ReadField5(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 5: ", err)
 } else {
@@ -4273,6 +4507,9 @@ func (p *DataPageHeaderV2)  ReadField5(iprot thrift.TProtocol) error {
 }
 
 func (p *DataPageHeaderV2)  ReadField6(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 6: ", err)
 } else {
@@ -4282,6 +4519,9 @@ func (p *DataPageHeaderV2)  ReadField6(iprot thrift.TProtocol) error {
 }
 
 func (p *DataPageHeaderV2)  ReadField7(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadBool(ctx); err != nil {
   return thrift.PrependError("error reading field 7: ", err)
 } else {
@@ -4291,6 +4531,9 @@ func (p *DataPageHeaderV2)  ReadField7(iprot thrift.TProtocol) error {
 }
 
 func (p *DataPageHeaderV2)  ReadField8(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   p.Statistics = &Statistics{}
   if err := p.Statistics.Read(iprot); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.Statistics), err)
@@ -4504,6 +4747,9 @@ func (p *PageHeader) IsSetDataPageHeaderV2() bool {
 }
 
 func (p *PageHeader) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -4627,6 +4873,9 @@ func (p *PageHeader) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *PageHeader)  ReadField1(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
@@ -4637,6 +4886,9 @@ func (p *PageHeader)  ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *PageHeader)  ReadField2(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 2: ", err)
 } else {
@@ -4646,6 +4898,9 @@ func (p *PageHeader)  ReadField2(iprot thrift.TProtocol) error {
 }
 
 func (p *PageHeader)  ReadField3(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 3: ", err)
 } else {
@@ -4655,6 +4910,9 @@ func (p *PageHeader)  ReadField3(iprot thrift.TProtocol) error {
 }
 
 func (p *PageHeader)  ReadField4(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 4: ", err)
 } else {
@@ -4664,6 +4922,9 @@ func (p *PageHeader)  ReadField4(iprot thrift.TProtocol) error {
 }
 
 func (p *PageHeader)  ReadField5(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   p.DataPageHeader = &DataPageHeader{}
   if err := p.DataPageHeader.Read(iprot); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.DataPageHeader), err)
@@ -4672,6 +4933,9 @@ func (p *PageHeader)  ReadField5(iprot thrift.TProtocol) error {
 }
 
 func (p *PageHeader)  ReadField6(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   p.IndexPageHeader = &IndexPageHeader{}
   if err := p.IndexPageHeader.Read(iprot); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.IndexPageHeader), err)
@@ -4680,6 +4944,9 @@ func (p *PageHeader)  ReadField6(iprot thrift.TProtocol) error {
 }
 
 func (p *PageHeader)  ReadField7(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   p.DictionaryPageHeader = &DictionaryPageHeader{}
   if err := p.DictionaryPageHeader.Read(iprot); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.DictionaryPageHeader), err)
@@ -4688,6 +4955,9 @@ func (p *PageHeader)  ReadField7(iprot thrift.TProtocol) error {
 }
 
 func (p *PageHeader)  ReadField8(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   p.DataPageHeaderV2 = &DataPageHeaderV2{
   IsCompressed: true,
 }
@@ -4848,6 +5118,9 @@ func (p *KeyValue) IsSetValue() bool {
 }
 
 func (p *KeyValue) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -4901,6 +5174,9 @@ func (p *KeyValue) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *KeyValue)  ReadField1(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadString(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
@@ -4910,6 +5186,9 @@ func (p *KeyValue)  ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *KeyValue)  ReadField2(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadString(ctx); err != nil {
   return thrift.PrependError("error reading field 2: ", err)
 } else {
@@ -4991,6 +5270,9 @@ func (p *SortingColumn) GetNullsFirst() bool {
   return p.NullsFirst
 }
 func (p *SortingColumn) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -5064,6 +5346,9 @@ func (p *SortingColumn) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *SortingColumn)  ReadField1(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
@@ -5073,6 +5358,9 @@ func (p *SortingColumn)  ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *SortingColumn)  ReadField2(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadBool(ctx); err != nil {
   return thrift.PrependError("error reading field 2: ", err)
 } else {
@@ -5082,6 +5370,9 @@ func (p *SortingColumn)  ReadField2(iprot thrift.TProtocol) error {
 }
 
 func (p *SortingColumn)  ReadField3(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadBool(ctx); err != nil {
   return thrift.PrependError("error reading field 3: ", err)
 } else {
@@ -5171,6 +5462,9 @@ func (p *PageEncodingStats) GetCount() int32 {
   return p.Count
 }
 func (p *PageEncodingStats) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -5244,6 +5538,9 @@ func (p *PageEncodingStats) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *PageEncodingStats)  ReadField1(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
@@ -5254,6 +5551,9 @@ func (p *PageEncodingStats)  ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *PageEncodingStats)  ReadField2(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 2: ", err)
 } else {
@@ -5264,6 +5564,9 @@ func (p *PageEncodingStats)  ReadField2(iprot thrift.TProtocol) error {
 }
 
 func (p *PageEncodingStats)  ReadField3(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 3: ", err)
 } else {
@@ -5447,6 +5750,9 @@ func (p *ColumnMetaData) IsSetEncodingStats() bool {
 }
 
 func (p *ColumnMetaData) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -5645,6 +5951,9 @@ func (p *ColumnMetaData) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnMetaData)  ReadField1(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
@@ -5655,6 +5964,9 @@ func (p *ColumnMetaData)  ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnMetaData)  ReadField2(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   _, size, err := iprot.ReadListBegin(ctx)
   if err != nil {
     return thrift.PrependError("error reading list begin: ", err)
@@ -5678,6 +5990,9 @@ var _elem0 Encoding
 }
 
 func (p *ColumnMetaData)  ReadField3(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   _, size, err := iprot.ReadListBegin(ctx)
   if err != nil {
     return thrift.PrependError("error reading list begin: ", err)
@@ -5700,6 +6015,9 @@ var _elem1 string
 }
 
 func (p *ColumnMetaData)  ReadField4(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 4: ", err)
 } else {
@@ -5710,6 +6028,9 @@ func (p *ColumnMetaData)  ReadField4(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnMetaData)  ReadField5(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI64(ctx); err != nil {
   return thrift.PrependError("error reading field 5: ", err)
 } else {
@@ -5719,6 +6040,9 @@ func (p *ColumnMetaData)  ReadField5(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnMetaData)  ReadField6(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI64(ctx); err != nil {
   return thrift.PrependError("error reading field 6: ", err)
 } else {
@@ -5728,6 +6052,9 @@ func (p *ColumnMetaData)  ReadField6(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnMetaData)  ReadField7(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI64(ctx); err != nil {
   return thrift.PrependError("error reading field 7: ", err)
 } else {
@@ -5737,6 +6064,9 @@ func (p *ColumnMetaData)  ReadField7(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnMetaData)  ReadField8(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   _, size, err := iprot.ReadListBegin(ctx)
   if err != nil {
     return thrift.PrependError("error reading list begin: ", err)
@@ -5757,6 +6087,9 @@ func (p *ColumnMetaData)  ReadField8(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnMetaData)  ReadField9(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI64(ctx); err != nil {
   return thrift.PrependError("error reading field 9: ", err)
 } else {
@@ -5766,6 +6099,9 @@ func (p *ColumnMetaData)  ReadField9(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnMetaData)  ReadField10(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI64(ctx); err != nil {
   return thrift.PrependError("error reading field 10: ", err)
 } else {
@@ -5775,6 +6111,9 @@ func (p *ColumnMetaData)  ReadField10(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnMetaData)  ReadField11(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI64(ctx); err != nil {
   return thrift.PrependError("error reading field 11: ", err)
 } else {
@@ -5784,6 +6123,9 @@ func (p *ColumnMetaData)  ReadField11(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnMetaData)  ReadField12(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   p.Statistics = &Statistics{}
   if err := p.Statistics.Read(iprot); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.Statistics), err)
@@ -5792,6 +6134,9 @@ func (p *ColumnMetaData)  ReadField12(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnMetaData)  ReadField13(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   _, size, err := iprot.ReadListBegin(ctx)
   if err != nil {
     return thrift.PrependError("error reading list begin: ", err)
@@ -6116,6 +6461,9 @@ func (p *ColumnChunk) IsSetColumnIndexLength() bool {
 }
 
 func (p *ColumnChunk) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -6219,6 +6567,9 @@ func (p *ColumnChunk) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnChunk)  ReadField1(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadString(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
@@ -6228,6 +6579,9 @@ func (p *ColumnChunk)  ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnChunk)  ReadField2(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI64(ctx); err != nil {
   return thrift.PrependError("error reading field 2: ", err)
 } else {
@@ -6237,6 +6591,9 @@ func (p *ColumnChunk)  ReadField2(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnChunk)  ReadField3(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   p.MetaData = &ColumnMetaData{}
   if err := p.MetaData.Read(iprot); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.MetaData), err)
@@ -6245,6 +6602,9 @@ func (p *ColumnChunk)  ReadField3(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnChunk)  ReadField4(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI64(ctx); err != nil {
   return thrift.PrependError("error reading field 4: ", err)
 } else {
@@ -6254,6 +6614,9 @@ func (p *ColumnChunk)  ReadField4(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnChunk)  ReadField5(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 5: ", err)
 } else {
@@ -6263,6 +6626,9 @@ func (p *ColumnChunk)  ReadField5(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnChunk)  ReadField6(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI64(ctx); err != nil {
   return thrift.PrependError("error reading field 6: ", err)
 } else {
@@ -6272,6 +6638,9 @@ func (p *ColumnChunk)  ReadField6(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnChunk)  ReadField7(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 7: ", err)
 } else {
@@ -6430,6 +6799,9 @@ func (p *RowGroup) IsSetSortingColumns() bool {
 }
 
 func (p *RowGroup) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -6513,6 +6885,9 @@ func (p *RowGroup) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *RowGroup)  ReadField1(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   _, size, err := iprot.ReadListBegin(ctx)
   if err != nil {
     return thrift.PrependError("error reading list begin: ", err)
@@ -6533,6 +6908,9 @@ func (p *RowGroup)  ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *RowGroup)  ReadField2(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI64(ctx); err != nil {
   return thrift.PrependError("error reading field 2: ", err)
 } else {
@@ -6542,6 +6920,9 @@ func (p *RowGroup)  ReadField2(iprot thrift.TProtocol) error {
 }
 
 func (p *RowGroup)  ReadField3(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI64(ctx); err != nil {
   return thrift.PrependError("error reading field 3: ", err)
 } else {
@@ -6551,6 +6932,9 @@ func (p *RowGroup)  ReadField3(iprot thrift.TProtocol) error {
 }
 
 func (p *RowGroup)  ReadField4(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   _, size, err := iprot.ReadListBegin(ctx)
   if err != nil {
     return thrift.PrependError("error reading list begin: ", err)
@@ -6662,6 +7046,9 @@ func NewTypeDefinedOrder() *TypeDefinedOrder {
 }
 
 func (p *TypeDefinedOrder) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -6787,6 +7174,9 @@ func (p *ColumnOrder) IsSetTYPE_ORDER() bool {
 }
 
 func (p *ColumnOrder) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -6825,6 +7215,9 @@ func (p *ColumnOrder) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnOrder)  ReadField1(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   p.TYPE_ORDER = &TypeDefinedOrder{}
   if err := p.TYPE_ORDER.Read(iprot); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.TYPE_ORDER), err)
@@ -6897,6 +7290,9 @@ func (p *PageLocation) GetFirstRowIndex() int64 {
   return p.FirstRowIndex
 }
 func (p *PageLocation) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -6970,6 +7366,9 @@ func (p *PageLocation) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *PageLocation)  ReadField1(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI64(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
@@ -6979,6 +7378,9 @@ func (p *PageLocation)  ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *PageLocation)  ReadField2(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 2: ", err)
 } else {
@@ -6988,6 +7390,9 @@ func (p *PageLocation)  ReadField2(iprot thrift.TProtocol) error {
 }
 
 func (p *PageLocation)  ReadField3(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI64(ctx); err != nil {
   return thrift.PrependError("error reading field 3: ", err)
 } else {
@@ -7064,6 +7469,9 @@ func (p *OffsetIndex) GetPageLocations() []*PageLocation {
   return p.PageLocations
 }
 func (p *OffsetIndex) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -7107,6 +7515,9 @@ func (p *OffsetIndex) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *OffsetIndex)  ReadField1(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   _, size, err := iprot.ReadListBegin(ctx)
   if err != nil {
     return thrift.PrependError("error reading list begin: ", err)
@@ -7225,6 +7636,9 @@ func (p *ColumnIndex) IsSetNullCounts() bool {
 }
 
 func (p *ColumnIndex) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -7323,6 +7737,9 @@ func (p *ColumnIndex) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnIndex)  ReadField1(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   _, size, err := iprot.ReadListBegin(ctx)
   if err != nil {
     return thrift.PrependError("error reading list begin: ", err)
@@ -7345,6 +7762,9 @@ var _elem7 bool
 }
 
 func (p *ColumnIndex)  ReadField2(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   _, size, err := iprot.ReadListBegin(ctx)
   if err != nil {
     return thrift.PrependError("error reading list begin: ", err)
@@ -7367,6 +7787,9 @@ var _elem8 []byte
 }
 
 func (p *ColumnIndex)  ReadField3(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   _, size, err := iprot.ReadListBegin(ctx)
   if err != nil {
     return thrift.PrependError("error reading list begin: ", err)
@@ -7389,6 +7812,9 @@ var _elem9 []byte
 }
 
 func (p *ColumnIndex)  ReadField4(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 4: ", err)
 } else {
@@ -7399,6 +7825,9 @@ func (p *ColumnIndex)  ReadField4(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnIndex)  ReadField5(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   _, size, err := iprot.ReadListBegin(ctx)
   if err != nil {
     return thrift.PrependError("error reading list begin: ", err)
@@ -7615,6 +8044,9 @@ func (p *FileMetaData) IsSetColumnOrders() bool {
 }
 
 func (p *FileMetaData) Read(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -7733,6 +8165,9 @@ func (p *FileMetaData) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *FileMetaData)  ReadField1(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
@@ -7742,6 +8177,9 @@ func (p *FileMetaData)  ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *FileMetaData)  ReadField2(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   _, size, err := iprot.ReadListBegin(ctx)
   if err != nil {
     return thrift.PrependError("error reading list begin: ", err)
@@ -7762,6 +8200,9 @@ func (p *FileMetaData)  ReadField2(iprot thrift.TProtocol) error {
 }
 
 func (p *FileMetaData)  ReadField3(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadI64(ctx); err != nil {
   return thrift.PrependError("error reading field 3: ", err)
 } else {
@@ -7771,6 +8212,9 @@ func (p *FileMetaData)  ReadField3(iprot thrift.TProtocol) error {
 }
 
 func (p *FileMetaData)  ReadField4(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   _, size, err := iprot.ReadListBegin(ctx)
   if err != nil {
     return thrift.PrependError("error reading list begin: ", err)
@@ -7791,6 +8235,9 @@ func (p *FileMetaData)  ReadField4(iprot thrift.TProtocol) error {
 }
 
 func (p *FileMetaData)  ReadField5(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   _, size, err := iprot.ReadListBegin(ctx)
   if err != nil {
     return thrift.PrependError("error reading list begin: ", err)
@@ -7811,6 +8258,9 @@ func (p *FileMetaData)  ReadField5(iprot thrift.TProtocol) error {
 }
 
 func (p *FileMetaData)  ReadField6(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   if v, err := iprot.ReadString(ctx); err != nil {
   return thrift.PrependError("error reading field 6: ", err)
 } else {
@@ -7820,6 +8270,9 @@ func (p *FileMetaData)  ReadField6(iprot thrift.TProtocol) error {
 }
 
 func (p *FileMetaData)  ReadField7(iprot thrift.TProtocol) error {
+  // Bumping Thrift version leads to error due to missing context
+  ctx := context.Background()
+
   _, size, err := iprot.ReadListBegin(ctx)
   if err != nil {
     return thrift.PrependError("error reading list begin: ", err)
