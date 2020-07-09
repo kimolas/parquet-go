@@ -20,6 +20,9 @@ var _ = context.Background
 var _ = reflect.DeepEqual
 var _ = bytes.Equal
 
+// Bumping Thrift version leads to error due to missing context
+ctx := context.Background()
+
 //Types supported by Parquet.  These types are intended to be used in combination
 //with the encodings to control the on disk storage format.
 //For example INT16 is not included as a type since a good encoding of INT32
@@ -628,13 +631,13 @@ func (p *Statistics) IsSetMinValue() bool {
 }
 
 func (p *Statistics) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
@@ -646,7 +649,7 @@ func (p *Statistics) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -656,7 +659,7 @@ func (p *Statistics) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -666,7 +669,7 @@ func (p *Statistics) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -676,7 +679,7 @@ func (p *Statistics) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -686,7 +689,7 @@ func (p *Statistics) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -696,27 +699,27 @@ func (p *Statistics) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
     default:
-      if err := iprot.Skip(fieldTypeId); err != nil {
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
         return err
       }
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   return nil
 }
 
 func (p *Statistics)  ReadField1(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadBinary(); err != nil {
+  if v, err := iprot.ReadBinary(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
   p.Max = v
@@ -725,7 +728,7 @@ func (p *Statistics)  ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *Statistics)  ReadField2(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadBinary(); err != nil {
+  if v, err := iprot.ReadBinary(ctx); err != nil {
   return thrift.PrependError("error reading field 2: ", err)
 } else {
   p.Min = v
@@ -734,7 +737,7 @@ func (p *Statistics)  ReadField2(iprot thrift.TProtocol) error {
 }
 
 func (p *Statistics)  ReadField3(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI64(); err != nil {
+  if v, err := iprot.ReadI64(ctx); err != nil {
   return thrift.PrependError("error reading field 3: ", err)
 } else {
   p.NullCount = &v
@@ -743,7 +746,7 @@ func (p *Statistics)  ReadField3(iprot thrift.TProtocol) error {
 }
 
 func (p *Statistics)  ReadField4(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI64(); err != nil {
+  if v, err := iprot.ReadI64(ctx); err != nil {
   return thrift.PrependError("error reading field 4: ", err)
 } else {
   p.DistinctCount = &v
@@ -752,7 +755,7 @@ func (p *Statistics)  ReadField4(iprot thrift.TProtocol) error {
 }
 
 func (p *Statistics)  ReadField5(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadBinary(); err != nil {
+  if v, err := iprot.ReadBinary(ctx); err != nil {
   return thrift.PrependError("error reading field 5: ", err)
 } else {
   p.MaxValue = v
@@ -761,7 +764,7 @@ func (p *Statistics)  ReadField5(iprot thrift.TProtocol) error {
 }
 
 func (p *Statistics)  ReadField6(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadBinary(); err != nil {
+  if v, err := iprot.ReadBinary(ctx); err != nil {
   return thrift.PrependError("error reading field 6: ", err)
 } else {
   p.MinValue = v
@@ -875,25 +878,25 @@ func NewStringType() *StringType {
 }
 
 func (p *StringType) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
     if fieldTypeId == thrift.STOP { break; }
-    if err := iprot.Skip(fieldTypeId); err != nil {
+    if err := iprot.Skip(ctx, fieldTypeId); err != nil {
       return err
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   return nil
@@ -926,25 +929,25 @@ func NewUUIDType() *UUIDType {
 }
 
 func (p *UUIDType) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
     if fieldTypeId == thrift.STOP { break; }
-    if err := iprot.Skip(fieldTypeId); err != nil {
+    if err := iprot.Skip(ctx, fieldTypeId); err != nil {
       return err
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   return nil
@@ -977,25 +980,25 @@ func NewMapType() *MapType {
 }
 
 func (p *MapType) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
     if fieldTypeId == thrift.STOP { break; }
-    if err := iprot.Skip(fieldTypeId); err != nil {
+    if err := iprot.Skip(ctx, fieldTypeId); err != nil {
       return err
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   return nil
@@ -1028,25 +1031,25 @@ func NewListType() *ListType {
 }
 
 func (p *ListType) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
     if fieldTypeId == thrift.STOP { break; }
-    if err := iprot.Skip(fieldTypeId); err != nil {
+    if err := iprot.Skip(ctx, fieldTypeId); err != nil {
       return err
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   return nil
@@ -1079,25 +1082,25 @@ func NewEnumType() *EnumType {
 }
 
 func (p *EnumType) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
     if fieldTypeId == thrift.STOP { break; }
-    if err := iprot.Skip(fieldTypeId); err != nil {
+    if err := iprot.Skip(ctx, fieldTypeId); err != nil {
       return err
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   return nil
@@ -1130,25 +1133,25 @@ func NewDateType() *DateType {
 }
 
 func (p *DateType) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
     if fieldTypeId == thrift.STOP { break; }
-    if err := iprot.Skip(fieldTypeId); err != nil {
+    if err := iprot.Skip(ctx, fieldTypeId); err != nil {
       return err
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   return nil
@@ -1186,25 +1189,25 @@ func NewNullType() *NullType {
 }
 
 func (p *NullType) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
     if fieldTypeId == thrift.STOP { break; }
-    if err := iprot.Skip(fieldTypeId); err != nil {
+    if err := iprot.Skip(ctx, fieldTypeId); err != nil {
       return err
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   return nil
@@ -1257,7 +1260,7 @@ func (p *DecimalType) GetPrecision() int32 {
   return p.Precision
 }
 func (p *DecimalType) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
@@ -1265,7 +1268,7 @@ func (p *DecimalType) Read(iprot thrift.TProtocol) error {
   var issetPrecision bool = false;
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
@@ -1278,7 +1281,7 @@ func (p *DecimalType) Read(iprot thrift.TProtocol) error {
         }
         issetScale = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -1289,20 +1292,20 @@ func (p *DecimalType) Read(iprot thrift.TProtocol) error {
         }
         issetPrecision = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
     default:
-      if err := iprot.Skip(fieldTypeId); err != nil {
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
         return err
       }
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   if !issetScale{
@@ -1315,7 +1318,7 @@ func (p *DecimalType) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *DecimalType)  ReadField1(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
   p.Scale = v
@@ -1324,7 +1327,7 @@ func (p *DecimalType)  ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *DecimalType)  ReadField2(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 2: ", err)
 } else {
   p.Precision = v
@@ -1382,25 +1385,25 @@ func NewMilliSeconds() *MilliSeconds {
 }
 
 func (p *MilliSeconds) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
     if fieldTypeId == thrift.STOP { break; }
-    if err := iprot.Skip(fieldTypeId); err != nil {
+    if err := iprot.Skip(ctx, fieldTypeId); err != nil {
       return err
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   return nil
@@ -1433,25 +1436,25 @@ func NewMicroSeconds() *MicroSeconds {
 }
 
 func (p *MicroSeconds) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
     if fieldTypeId == thrift.STOP { break; }
-    if err := iprot.Skip(fieldTypeId); err != nil {
+    if err := iprot.Skip(ctx, fieldTypeId); err != nil {
       return err
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   return nil
@@ -1484,25 +1487,25 @@ func NewNanoSeconds() *NanoSeconds {
 }
 
 func (p *NanoSeconds) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
     if fieldTypeId == thrift.STOP { break; }
-    if err := iprot.Skip(fieldTypeId); err != nil {
+    if err := iprot.Skip(ctx, fieldTypeId); err != nil {
       return err
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   return nil
@@ -1590,13 +1593,13 @@ func (p *TimeUnit) IsSetNANOS() bool {
 }
 
 func (p *TimeUnit) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
@@ -1608,7 +1611,7 @@ func (p *TimeUnit) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -1618,7 +1621,7 @@ func (p *TimeUnit) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -1628,20 +1631,20 @@ func (p *TimeUnit) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
     default:
-      if err := iprot.Skip(fieldTypeId); err != nil {
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
         return err
       }
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   return nil
@@ -1767,7 +1770,7 @@ func (p *TimestampType) IsSetUnit() bool {
 }
 
 func (p *TimestampType) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
@@ -1775,7 +1778,7 @@ func (p *TimestampType) Read(iprot thrift.TProtocol) error {
   var issetUnit bool = false;
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
@@ -1788,7 +1791,7 @@ func (p *TimestampType) Read(iprot thrift.TProtocol) error {
         }
         issetIsAdjustedToUTC = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -1799,20 +1802,20 @@ func (p *TimestampType) Read(iprot thrift.TProtocol) error {
         }
         issetUnit = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
     default:
-      if err := iprot.Skip(fieldTypeId); err != nil {
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
         return err
       }
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   if !issetIsAdjustedToUTC{
@@ -1825,7 +1828,7 @@ func (p *TimestampType) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *TimestampType)  ReadField1(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadBool(); err != nil {
+  if v, err := iprot.ReadBool(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
   p.IsAdjustedToUTC = v
@@ -1915,7 +1918,7 @@ func (p *TimeType) IsSetUnit() bool {
 }
 
 func (p *TimeType) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
@@ -1923,7 +1926,7 @@ func (p *TimeType) Read(iprot thrift.TProtocol) error {
   var issetUnit bool = false;
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
@@ -1936,7 +1939,7 @@ func (p *TimeType) Read(iprot thrift.TProtocol) error {
         }
         issetIsAdjustedToUTC = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -1947,20 +1950,20 @@ func (p *TimeType) Read(iprot thrift.TProtocol) error {
         }
         issetUnit = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
     default:
-      if err := iprot.Skip(fieldTypeId); err != nil {
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
         return err
       }
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   if !issetIsAdjustedToUTC{
@@ -1973,7 +1976,7 @@ func (p *TimeType) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *TimeType)  ReadField1(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadBool(); err != nil {
+  if v, err := iprot.ReadBool(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
   p.IsAdjustedToUTC = v
@@ -2058,7 +2061,7 @@ func (p *IntType) GetIsSigned() bool {
   return p.IsSigned
 }
 func (p *IntType) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
@@ -2066,7 +2069,7 @@ func (p *IntType) Read(iprot thrift.TProtocol) error {
   var issetIsSigned bool = false;
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
@@ -2079,7 +2082,7 @@ func (p *IntType) Read(iprot thrift.TProtocol) error {
         }
         issetBitWidth = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -2090,20 +2093,20 @@ func (p *IntType) Read(iprot thrift.TProtocol) error {
         }
         issetIsSigned = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
     default:
-      if err := iprot.Skip(fieldTypeId); err != nil {
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
         return err
       }
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   if !issetBitWidth{
@@ -2116,7 +2119,7 @@ func (p *IntType) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *IntType)  ReadField1(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadByte(); err != nil {
+  if v, err := iprot.ReadByte(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
   temp := int8(v)
@@ -2126,7 +2129,7 @@ func (p *IntType)  ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *IntType)  ReadField2(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadBool(); err != nil {
+  if v, err := iprot.ReadBool(ctx); err != nil {
   return thrift.PrependError("error reading field 2: ", err)
 } else {
   p.IsSigned = v
@@ -2186,25 +2189,25 @@ func NewJsonType() *JsonType {
 }
 
 func (p *JsonType) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
     if fieldTypeId == thrift.STOP { break; }
-    if err := iprot.Skip(fieldTypeId); err != nil {
+    if err := iprot.Skip(ctx, fieldTypeId); err != nil {
       return err
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   return nil
@@ -2240,25 +2243,25 @@ func NewBsonType() *BsonType {
 }
 
 func (p *BsonType) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
     if fieldTypeId == thrift.STOP { break; }
-    if err := iprot.Skip(fieldTypeId); err != nil {
+    if err := iprot.Skip(ctx, fieldTypeId); err != nil {
       return err
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   return nil
@@ -2513,13 +2516,13 @@ func (p *LogicalType) IsSetUUID() bool {
 }
 
 func (p *LogicalType) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
@@ -2531,7 +2534,7 @@ func (p *LogicalType) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -2541,7 +2544,7 @@ func (p *LogicalType) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -2551,7 +2554,7 @@ func (p *LogicalType) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -2561,7 +2564,7 @@ func (p *LogicalType) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -2571,7 +2574,7 @@ func (p *LogicalType) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -2581,7 +2584,7 @@ func (p *LogicalType) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -2591,7 +2594,7 @@ func (p *LogicalType) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -2601,7 +2604,7 @@ func (p *LogicalType) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -2611,7 +2614,7 @@ func (p *LogicalType) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -2621,7 +2624,7 @@ func (p *LogicalType) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -2631,7 +2634,7 @@ func (p *LogicalType) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -2641,7 +2644,7 @@ func (p *LogicalType) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -2651,20 +2654,20 @@ func (p *LogicalType) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
     default:
-      if err := iprot.Skip(fieldTypeId); err != nil {
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
         return err
       }
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   return nil
@@ -3128,14 +3131,14 @@ func (p *SchemaElement) IsSetLogicalType() bool {
 }
 
 func (p *SchemaElement) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
   var issetName bool = false;
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
@@ -3147,7 +3150,7 @@ func (p *SchemaElement) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -3157,7 +3160,7 @@ func (p *SchemaElement) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -3167,7 +3170,7 @@ func (p *SchemaElement) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -3178,7 +3181,7 @@ func (p *SchemaElement) Read(iprot thrift.TProtocol) error {
         }
         issetName = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -3188,7 +3191,7 @@ func (p *SchemaElement) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -3198,7 +3201,7 @@ func (p *SchemaElement) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -3208,7 +3211,7 @@ func (p *SchemaElement) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -3218,7 +3221,7 @@ func (p *SchemaElement) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -3228,7 +3231,7 @@ func (p *SchemaElement) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -3238,20 +3241,20 @@ func (p *SchemaElement) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
     default:
-      if err := iprot.Skip(fieldTypeId); err != nil {
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
         return err
       }
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   if !issetName{
@@ -3261,7 +3264,7 @@ func (p *SchemaElement) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *SchemaElement)  ReadField1(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
   temp := Type(v)
@@ -3271,7 +3274,7 @@ func (p *SchemaElement)  ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *SchemaElement)  ReadField2(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 2: ", err)
 } else {
   p.TypeLength = &v
@@ -3280,7 +3283,7 @@ func (p *SchemaElement)  ReadField2(iprot thrift.TProtocol) error {
 }
 
 func (p *SchemaElement)  ReadField3(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 3: ", err)
 } else {
   temp := FieldRepetitionType(v)
@@ -3290,7 +3293,7 @@ func (p *SchemaElement)  ReadField3(iprot thrift.TProtocol) error {
 }
 
 func (p *SchemaElement)  ReadField4(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadString(); err != nil {
+  if v, err := iprot.ReadString(ctx); err != nil {
   return thrift.PrependError("error reading field 4: ", err)
 } else {
   p.Name = v
@@ -3299,7 +3302,7 @@ func (p *SchemaElement)  ReadField4(iprot thrift.TProtocol) error {
 }
 
 func (p *SchemaElement)  ReadField5(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 5: ", err)
 } else {
   p.NumChildren = &v
@@ -3308,7 +3311,7 @@ func (p *SchemaElement)  ReadField5(iprot thrift.TProtocol) error {
 }
 
 func (p *SchemaElement)  ReadField6(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 6: ", err)
 } else {
   temp := ConvertedType(v)
@@ -3318,7 +3321,7 @@ func (p *SchemaElement)  ReadField6(iprot thrift.TProtocol) error {
 }
 
 func (p *SchemaElement)  ReadField7(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 7: ", err)
 } else {
   p.Scale = &v
@@ -3327,7 +3330,7 @@ func (p *SchemaElement)  ReadField7(iprot thrift.TProtocol) error {
 }
 
 func (p *SchemaElement)  ReadField8(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 8: ", err)
 } else {
   p.Precision = &v
@@ -3336,7 +3339,7 @@ func (p *SchemaElement)  ReadField8(iprot thrift.TProtocol) error {
 }
 
 func (p *SchemaElement)  ReadField9(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 9: ", err)
 } else {
   p.FieldID = &v
@@ -3548,7 +3551,7 @@ func (p *DataPageHeader) IsSetStatistics() bool {
 }
 
 func (p *DataPageHeader) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
@@ -3558,7 +3561,7 @@ func (p *DataPageHeader) Read(iprot thrift.TProtocol) error {
   var issetRepetitionLevelEncoding bool = false;
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
@@ -3571,7 +3574,7 @@ func (p *DataPageHeader) Read(iprot thrift.TProtocol) error {
         }
         issetNumValues = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -3582,7 +3585,7 @@ func (p *DataPageHeader) Read(iprot thrift.TProtocol) error {
         }
         issetEncoding = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -3593,7 +3596,7 @@ func (p *DataPageHeader) Read(iprot thrift.TProtocol) error {
         }
         issetDefinitionLevelEncoding = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -3604,7 +3607,7 @@ func (p *DataPageHeader) Read(iprot thrift.TProtocol) error {
         }
         issetRepetitionLevelEncoding = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -3614,20 +3617,20 @@ func (p *DataPageHeader) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
     default:
-      if err := iprot.Skip(fieldTypeId); err != nil {
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
         return err
       }
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   if !issetNumValues{
@@ -3646,7 +3649,7 @@ func (p *DataPageHeader) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *DataPageHeader)  ReadField1(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
   p.NumValues = v
@@ -3655,7 +3658,7 @@ func (p *DataPageHeader)  ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *DataPageHeader)  ReadField2(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 2: ", err)
 } else {
   temp := Encoding(v)
@@ -3665,7 +3668,7 @@ func (p *DataPageHeader)  ReadField2(iprot thrift.TProtocol) error {
 }
 
 func (p *DataPageHeader)  ReadField3(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 3: ", err)
 } else {
   temp := Encoding(v)
@@ -3675,7 +3678,7 @@ func (p *DataPageHeader)  ReadField3(iprot thrift.TProtocol) error {
 }
 
 func (p *DataPageHeader)  ReadField4(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 4: ", err)
 } else {
   temp := Encoding(v)
@@ -3777,25 +3780,25 @@ func NewIndexPageHeader() *IndexPageHeader {
 }
 
 func (p *IndexPageHeader) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
     if fieldTypeId == thrift.STOP { break; }
-    if err := iprot.Skip(fieldTypeId); err != nil {
+    if err := iprot.Skip(ctx, fieldTypeId); err != nil {
       return err
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   return nil
@@ -3856,7 +3859,7 @@ func (p *DictionaryPageHeader) IsSetIsSorted() bool {
 }
 
 func (p *DictionaryPageHeader) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
@@ -3864,7 +3867,7 @@ func (p *DictionaryPageHeader) Read(iprot thrift.TProtocol) error {
   var issetEncoding bool = false;
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
@@ -3877,7 +3880,7 @@ func (p *DictionaryPageHeader) Read(iprot thrift.TProtocol) error {
         }
         issetNumValues = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -3888,7 +3891,7 @@ func (p *DictionaryPageHeader) Read(iprot thrift.TProtocol) error {
         }
         issetEncoding = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -3898,20 +3901,20 @@ func (p *DictionaryPageHeader) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
     default:
-      if err := iprot.Skip(fieldTypeId); err != nil {
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
         return err
       }
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   if !issetNumValues{
@@ -3924,7 +3927,7 @@ func (p *DictionaryPageHeader) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *DictionaryPageHeader)  ReadField1(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
   p.NumValues = v
@@ -3933,7 +3936,7 @@ func (p *DictionaryPageHeader)  ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *DictionaryPageHeader)  ReadField2(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 2: ", err)
 } else {
   temp := Encoding(v)
@@ -3943,7 +3946,7 @@ func (p *DictionaryPageHeader)  ReadField2(iprot thrift.TProtocol) error {
 }
 
 func (p *DictionaryPageHeader)  ReadField3(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadBool(); err != nil {
+  if v, err := iprot.ReadBool(ctx); err != nil {
   return thrift.PrependError("error reading field 3: ", err)
 } else {
   p.IsSorted = &v
@@ -4086,7 +4089,7 @@ func (p *DataPageHeaderV2) IsSetStatistics() bool {
 }
 
 func (p *DataPageHeaderV2) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
@@ -4098,7 +4101,7 @@ func (p *DataPageHeaderV2) Read(iprot thrift.TProtocol) error {
   var issetRepetitionLevelsByteLength bool = false;
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
@@ -4111,7 +4114,7 @@ func (p *DataPageHeaderV2) Read(iprot thrift.TProtocol) error {
         }
         issetNumValues = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -4122,7 +4125,7 @@ func (p *DataPageHeaderV2) Read(iprot thrift.TProtocol) error {
         }
         issetNumNulls = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -4133,7 +4136,7 @@ func (p *DataPageHeaderV2) Read(iprot thrift.TProtocol) error {
         }
         issetNumRows = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -4144,7 +4147,7 @@ func (p *DataPageHeaderV2) Read(iprot thrift.TProtocol) error {
         }
         issetEncoding = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -4155,7 +4158,7 @@ func (p *DataPageHeaderV2) Read(iprot thrift.TProtocol) error {
         }
         issetDefinitionLevelsByteLength = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -4166,7 +4169,7 @@ func (p *DataPageHeaderV2) Read(iprot thrift.TProtocol) error {
         }
         issetRepetitionLevelsByteLength = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -4176,7 +4179,7 @@ func (p *DataPageHeaderV2) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -4186,20 +4189,20 @@ func (p *DataPageHeaderV2) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
     default:
-      if err := iprot.Skip(fieldTypeId); err != nil {
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
         return err
       }
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   if !issetNumValues{
@@ -4224,7 +4227,7 @@ func (p *DataPageHeaderV2) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *DataPageHeaderV2)  ReadField1(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
   p.NumValues = v
@@ -4233,7 +4236,7 @@ func (p *DataPageHeaderV2)  ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *DataPageHeaderV2)  ReadField2(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 2: ", err)
 } else {
   p.NumNulls = v
@@ -4242,7 +4245,7 @@ func (p *DataPageHeaderV2)  ReadField2(iprot thrift.TProtocol) error {
 }
 
 func (p *DataPageHeaderV2)  ReadField3(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 3: ", err)
 } else {
   p.NumRows = v
@@ -4251,7 +4254,7 @@ func (p *DataPageHeaderV2)  ReadField3(iprot thrift.TProtocol) error {
 }
 
 func (p *DataPageHeaderV2)  ReadField4(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 4: ", err)
 } else {
   temp := Encoding(v)
@@ -4261,7 +4264,7 @@ func (p *DataPageHeaderV2)  ReadField4(iprot thrift.TProtocol) error {
 }
 
 func (p *DataPageHeaderV2)  ReadField5(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 5: ", err)
 } else {
   p.DefinitionLevelsByteLength = v
@@ -4270,7 +4273,7 @@ func (p *DataPageHeaderV2)  ReadField5(iprot thrift.TProtocol) error {
 }
 
 func (p *DataPageHeaderV2)  ReadField6(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 6: ", err)
 } else {
   p.RepetitionLevelsByteLength = v
@@ -4279,7 +4282,7 @@ func (p *DataPageHeaderV2)  ReadField6(iprot thrift.TProtocol) error {
 }
 
 func (p *DataPageHeaderV2)  ReadField7(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadBool(); err != nil {
+  if v, err := iprot.ReadBool(ctx); err != nil {
   return thrift.PrependError("error reading field 7: ", err)
 } else {
   p.IsCompressed = v
@@ -4501,7 +4504,7 @@ func (p *PageHeader) IsSetDataPageHeaderV2() bool {
 }
 
 func (p *PageHeader) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
@@ -4510,7 +4513,7 @@ func (p *PageHeader) Read(iprot thrift.TProtocol) error {
   var issetCompressedPageSize bool = false;
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
@@ -4523,7 +4526,7 @@ func (p *PageHeader) Read(iprot thrift.TProtocol) error {
         }
         issetType = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -4534,7 +4537,7 @@ func (p *PageHeader) Read(iprot thrift.TProtocol) error {
         }
         issetUncompressedPageSize = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -4545,7 +4548,7 @@ func (p *PageHeader) Read(iprot thrift.TProtocol) error {
         }
         issetCompressedPageSize = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -4555,7 +4558,7 @@ func (p *PageHeader) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -4565,7 +4568,7 @@ func (p *PageHeader) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -4575,7 +4578,7 @@ func (p *PageHeader) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -4585,7 +4588,7 @@ func (p *PageHeader) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -4595,20 +4598,20 @@ func (p *PageHeader) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
     default:
-      if err := iprot.Skip(fieldTypeId); err != nil {
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
         return err
       }
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   if !issetType{
@@ -4624,7 +4627,7 @@ func (p *PageHeader) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *PageHeader)  ReadField1(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
   temp := PageType(v)
@@ -4634,7 +4637,7 @@ func (p *PageHeader)  ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *PageHeader)  ReadField2(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 2: ", err)
 } else {
   p.UncompressedPageSize = v
@@ -4643,7 +4646,7 @@ func (p *PageHeader)  ReadField2(iprot thrift.TProtocol) error {
 }
 
 func (p *PageHeader)  ReadField3(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 3: ", err)
 } else {
   p.CompressedPageSize = v
@@ -4652,7 +4655,7 @@ func (p *PageHeader)  ReadField3(iprot thrift.TProtocol) error {
 }
 
 func (p *PageHeader)  ReadField4(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 4: ", err)
 } else {
   p.Crc = &v
@@ -4845,14 +4848,14 @@ func (p *KeyValue) IsSetValue() bool {
 }
 
 func (p *KeyValue) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
   var issetKey bool = false;
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
@@ -4865,7 +4868,7 @@ func (p *KeyValue) Read(iprot thrift.TProtocol) error {
         }
         issetKey = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -4875,20 +4878,20 @@ func (p *KeyValue) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
     default:
-      if err := iprot.Skip(fieldTypeId); err != nil {
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
         return err
       }
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   if !issetKey{
@@ -4898,7 +4901,7 @@ func (p *KeyValue) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *KeyValue)  ReadField1(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadString(); err != nil {
+  if v, err := iprot.ReadString(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
   p.Key = v
@@ -4907,7 +4910,7 @@ func (p *KeyValue)  ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *KeyValue)  ReadField2(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadString(); err != nil {
+  if v, err := iprot.ReadString(ctx); err != nil {
   return thrift.PrependError("error reading field 2: ", err)
 } else {
   p.Value = &v
@@ -4988,7 +4991,7 @@ func (p *SortingColumn) GetNullsFirst() bool {
   return p.NullsFirst
 }
 func (p *SortingColumn) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
@@ -4997,7 +5000,7 @@ func (p *SortingColumn) Read(iprot thrift.TProtocol) error {
   var issetNullsFirst bool = false;
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
@@ -5010,7 +5013,7 @@ func (p *SortingColumn) Read(iprot thrift.TProtocol) error {
         }
         issetColumnIdx = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -5021,7 +5024,7 @@ func (p *SortingColumn) Read(iprot thrift.TProtocol) error {
         }
         issetDescending = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -5032,20 +5035,20 @@ func (p *SortingColumn) Read(iprot thrift.TProtocol) error {
         }
         issetNullsFirst = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
     default:
-      if err := iprot.Skip(fieldTypeId); err != nil {
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
         return err
       }
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   if !issetColumnIdx{
@@ -5061,7 +5064,7 @@ func (p *SortingColumn) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *SortingColumn)  ReadField1(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
   p.ColumnIdx = v
@@ -5070,7 +5073,7 @@ func (p *SortingColumn)  ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *SortingColumn)  ReadField2(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadBool(); err != nil {
+  if v, err := iprot.ReadBool(ctx); err != nil {
   return thrift.PrependError("error reading field 2: ", err)
 } else {
   p.Descending = v
@@ -5079,7 +5082,7 @@ func (p *SortingColumn)  ReadField2(iprot thrift.TProtocol) error {
 }
 
 func (p *SortingColumn)  ReadField3(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadBool(); err != nil {
+  if v, err := iprot.ReadBool(ctx); err != nil {
   return thrift.PrependError("error reading field 3: ", err)
 } else {
   p.NullsFirst = v
@@ -5168,7 +5171,7 @@ func (p *PageEncodingStats) GetCount() int32 {
   return p.Count
 }
 func (p *PageEncodingStats) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
@@ -5177,7 +5180,7 @@ func (p *PageEncodingStats) Read(iprot thrift.TProtocol) error {
   var issetCount bool = false;
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
@@ -5190,7 +5193,7 @@ func (p *PageEncodingStats) Read(iprot thrift.TProtocol) error {
         }
         issetPageType = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -5201,7 +5204,7 @@ func (p *PageEncodingStats) Read(iprot thrift.TProtocol) error {
         }
         issetEncoding = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -5212,20 +5215,20 @@ func (p *PageEncodingStats) Read(iprot thrift.TProtocol) error {
         }
         issetCount = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
     default:
-      if err := iprot.Skip(fieldTypeId); err != nil {
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
         return err
       }
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   if !issetPageType{
@@ -5241,7 +5244,7 @@ func (p *PageEncodingStats) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *PageEncodingStats)  ReadField1(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
   temp := PageType(v)
@@ -5251,7 +5254,7 @@ func (p *PageEncodingStats)  ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *PageEncodingStats)  ReadField2(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 2: ", err)
 } else {
   temp := Encoding(v)
@@ -5261,7 +5264,7 @@ func (p *PageEncodingStats)  ReadField2(iprot thrift.TProtocol) error {
 }
 
 func (p *PageEncodingStats)  ReadField3(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 3: ", err)
 } else {
   p.Count = v
@@ -5444,7 +5447,7 @@ func (p *ColumnMetaData) IsSetEncodingStats() bool {
 }
 
 func (p *ColumnMetaData) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
@@ -5458,7 +5461,7 @@ func (p *ColumnMetaData) Read(iprot thrift.TProtocol) error {
   var issetDataPageOffset bool = false;
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
@@ -5471,7 +5474,7 @@ func (p *ColumnMetaData) Read(iprot thrift.TProtocol) error {
         }
         issetType = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -5482,7 +5485,7 @@ func (p *ColumnMetaData) Read(iprot thrift.TProtocol) error {
         }
         issetEncodings = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -5493,7 +5496,7 @@ func (p *ColumnMetaData) Read(iprot thrift.TProtocol) error {
         }
         issetPathInSchema = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -5504,7 +5507,7 @@ func (p *ColumnMetaData) Read(iprot thrift.TProtocol) error {
         }
         issetCodec = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -5515,7 +5518,7 @@ func (p *ColumnMetaData) Read(iprot thrift.TProtocol) error {
         }
         issetNumValues = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -5526,7 +5529,7 @@ func (p *ColumnMetaData) Read(iprot thrift.TProtocol) error {
         }
         issetTotalUncompressedSize = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -5537,7 +5540,7 @@ func (p *ColumnMetaData) Read(iprot thrift.TProtocol) error {
         }
         issetTotalCompressedSize = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -5547,7 +5550,7 @@ func (p *ColumnMetaData) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -5558,7 +5561,7 @@ func (p *ColumnMetaData) Read(iprot thrift.TProtocol) error {
         }
         issetDataPageOffset = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -5568,7 +5571,7 @@ func (p *ColumnMetaData) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -5578,7 +5581,7 @@ func (p *ColumnMetaData) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -5588,7 +5591,7 @@ func (p *ColumnMetaData) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -5598,20 +5601,20 @@ func (p *ColumnMetaData) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
     default:
-      if err := iprot.Skip(fieldTypeId); err != nil {
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
         return err
       }
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   if !issetType{
@@ -5642,7 +5645,7 @@ func (p *ColumnMetaData) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnMetaData)  ReadField1(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
   temp := Type(v)
@@ -5652,7 +5655,7 @@ func (p *ColumnMetaData)  ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnMetaData)  ReadField2(iprot thrift.TProtocol) error {
-  _, size, err := iprot.ReadListBegin()
+  _, size, err := iprot.ReadListBegin(ctx)
   if err != nil {
     return thrift.PrependError("error reading list begin: ", err)
   }
@@ -5660,7 +5663,7 @@ func (p *ColumnMetaData)  ReadField2(iprot thrift.TProtocol) error {
   p.Encodings =  tSlice
   for i := 0; i < size; i ++ {
 var _elem0 Encoding
-    if v, err := iprot.ReadI32(); err != nil {
+    if v, err := iprot.ReadI32(ctx); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
     temp := Encoding(v)
@@ -5668,14 +5671,14 @@ var _elem0 Encoding
 }
     p.Encodings = append(p.Encodings, _elem0)
   }
-  if err := iprot.ReadListEnd(); err != nil {
+  if err := iprot.ReadListEnd(ctx); err != nil {
     return thrift.PrependError("error reading list end: ", err)
   }
   return nil
 }
 
 func (p *ColumnMetaData)  ReadField3(iprot thrift.TProtocol) error {
-  _, size, err := iprot.ReadListBegin()
+  _, size, err := iprot.ReadListBegin(ctx)
   if err != nil {
     return thrift.PrependError("error reading list begin: ", err)
   }
@@ -5683,21 +5686,21 @@ func (p *ColumnMetaData)  ReadField3(iprot thrift.TProtocol) error {
   p.PathInSchema =  tSlice
   for i := 0; i < size; i ++ {
 var _elem1 string
-    if v, err := iprot.ReadString(); err != nil {
+    if v, err := iprot.ReadString(ctx); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
     _elem1 = v
 }
     p.PathInSchema = append(p.PathInSchema, _elem1)
   }
-  if err := iprot.ReadListEnd(); err != nil {
+  if err := iprot.ReadListEnd(ctx); err != nil {
     return thrift.PrependError("error reading list end: ", err)
   }
   return nil
 }
 
 func (p *ColumnMetaData)  ReadField4(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 4: ", err)
 } else {
   temp := CompressionCodec(v)
@@ -5707,7 +5710,7 @@ func (p *ColumnMetaData)  ReadField4(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnMetaData)  ReadField5(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI64(); err != nil {
+  if v, err := iprot.ReadI64(ctx); err != nil {
   return thrift.PrependError("error reading field 5: ", err)
 } else {
   p.NumValues = v
@@ -5716,7 +5719,7 @@ func (p *ColumnMetaData)  ReadField5(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnMetaData)  ReadField6(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI64(); err != nil {
+  if v, err := iprot.ReadI64(ctx); err != nil {
   return thrift.PrependError("error reading field 6: ", err)
 } else {
   p.TotalUncompressedSize = v
@@ -5725,7 +5728,7 @@ func (p *ColumnMetaData)  ReadField6(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnMetaData)  ReadField7(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI64(); err != nil {
+  if v, err := iprot.ReadI64(ctx); err != nil {
   return thrift.PrependError("error reading field 7: ", err)
 } else {
   p.TotalCompressedSize = v
@@ -5734,7 +5737,7 @@ func (p *ColumnMetaData)  ReadField7(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnMetaData)  ReadField8(iprot thrift.TProtocol) error {
-  _, size, err := iprot.ReadListBegin()
+  _, size, err := iprot.ReadListBegin(ctx)
   if err != nil {
     return thrift.PrependError("error reading list begin: ", err)
   }
@@ -5747,14 +5750,14 @@ func (p *ColumnMetaData)  ReadField8(iprot thrift.TProtocol) error {
     }
     p.KeyValueMetadata = append(p.KeyValueMetadata, _elem2)
   }
-  if err := iprot.ReadListEnd(); err != nil {
+  if err := iprot.ReadListEnd(ctx); err != nil {
     return thrift.PrependError("error reading list end: ", err)
   }
   return nil
 }
 
 func (p *ColumnMetaData)  ReadField9(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI64(); err != nil {
+  if v, err := iprot.ReadI64(ctx); err != nil {
   return thrift.PrependError("error reading field 9: ", err)
 } else {
   p.DataPageOffset = v
@@ -5763,7 +5766,7 @@ func (p *ColumnMetaData)  ReadField9(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnMetaData)  ReadField10(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI64(); err != nil {
+  if v, err := iprot.ReadI64(ctx); err != nil {
   return thrift.PrependError("error reading field 10: ", err)
 } else {
   p.IndexPageOffset = &v
@@ -5772,7 +5775,7 @@ func (p *ColumnMetaData)  ReadField10(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnMetaData)  ReadField11(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI64(); err != nil {
+  if v, err := iprot.ReadI64(ctx); err != nil {
   return thrift.PrependError("error reading field 11: ", err)
 } else {
   p.DictionaryPageOffset = &v
@@ -5789,7 +5792,7 @@ func (p *ColumnMetaData)  ReadField12(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnMetaData)  ReadField13(iprot thrift.TProtocol) error {
-  _, size, err := iprot.ReadListBegin()
+  _, size, err := iprot.ReadListBegin(ctx)
   if err != nil {
     return thrift.PrependError("error reading list begin: ", err)
   }
@@ -5802,7 +5805,7 @@ func (p *ColumnMetaData)  ReadField13(iprot thrift.TProtocol) error {
     }
     p.EncodingStats = append(p.EncodingStats, _elem3)
   }
-  if err := iprot.ReadListEnd(); err != nil {
+  if err := iprot.ReadListEnd(ctx); err != nil {
     return thrift.PrependError("error reading list end: ", err)
   }
   return nil
@@ -6113,14 +6116,14 @@ func (p *ColumnChunk) IsSetColumnIndexLength() bool {
 }
 
 func (p *ColumnChunk) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
   var issetFileOffset bool = false;
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
@@ -6132,7 +6135,7 @@ func (p *ColumnChunk) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -6143,7 +6146,7 @@ func (p *ColumnChunk) Read(iprot thrift.TProtocol) error {
         }
         issetFileOffset = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -6153,7 +6156,7 @@ func (p *ColumnChunk) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -6163,7 +6166,7 @@ func (p *ColumnChunk) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -6173,7 +6176,7 @@ func (p *ColumnChunk) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -6183,7 +6186,7 @@ func (p *ColumnChunk) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -6193,20 +6196,20 @@ func (p *ColumnChunk) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
     default:
-      if err := iprot.Skip(fieldTypeId); err != nil {
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
         return err
       }
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   if !issetFileOffset{
@@ -6216,7 +6219,7 @@ func (p *ColumnChunk) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnChunk)  ReadField1(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadString(); err != nil {
+  if v, err := iprot.ReadString(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
   p.FilePath = &v
@@ -6225,7 +6228,7 @@ func (p *ColumnChunk)  ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnChunk)  ReadField2(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI64(); err != nil {
+  if v, err := iprot.ReadI64(ctx); err != nil {
   return thrift.PrependError("error reading field 2: ", err)
 } else {
   p.FileOffset = v
@@ -6242,7 +6245,7 @@ func (p *ColumnChunk)  ReadField3(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnChunk)  ReadField4(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI64(); err != nil {
+  if v, err := iprot.ReadI64(ctx); err != nil {
   return thrift.PrependError("error reading field 4: ", err)
 } else {
   p.OffsetIndexOffset = &v
@@ -6251,7 +6254,7 @@ func (p *ColumnChunk)  ReadField4(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnChunk)  ReadField5(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 5: ", err)
 } else {
   p.OffsetIndexLength = &v
@@ -6260,7 +6263,7 @@ func (p *ColumnChunk)  ReadField5(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnChunk)  ReadField6(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI64(); err != nil {
+  if v, err := iprot.ReadI64(ctx); err != nil {
   return thrift.PrependError("error reading field 6: ", err)
 } else {
   p.ColumnIndexOffset = &v
@@ -6269,7 +6272,7 @@ func (p *ColumnChunk)  ReadField6(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnChunk)  ReadField7(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 7: ", err)
 } else {
   p.ColumnIndexLength = &v
@@ -6427,7 +6430,7 @@ func (p *RowGroup) IsSetSortingColumns() bool {
 }
 
 func (p *RowGroup) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
@@ -6436,7 +6439,7 @@ func (p *RowGroup) Read(iprot thrift.TProtocol) error {
   var issetNumRows bool = false;
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
@@ -6449,7 +6452,7 @@ func (p *RowGroup) Read(iprot thrift.TProtocol) error {
         }
         issetColumns = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -6460,7 +6463,7 @@ func (p *RowGroup) Read(iprot thrift.TProtocol) error {
         }
         issetTotalByteSize = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -6471,7 +6474,7 @@ func (p *RowGroup) Read(iprot thrift.TProtocol) error {
         }
         issetNumRows = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -6481,20 +6484,20 @@ func (p *RowGroup) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
     default:
-      if err := iprot.Skip(fieldTypeId); err != nil {
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
         return err
       }
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   if !issetColumns{
@@ -6510,7 +6513,7 @@ func (p *RowGroup) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *RowGroup)  ReadField1(iprot thrift.TProtocol) error {
-  _, size, err := iprot.ReadListBegin()
+  _, size, err := iprot.ReadListBegin(ctx)
   if err != nil {
     return thrift.PrependError("error reading list begin: ", err)
   }
@@ -6523,14 +6526,14 @@ func (p *RowGroup)  ReadField1(iprot thrift.TProtocol) error {
     }
     p.Columns = append(p.Columns, _elem4)
   }
-  if err := iprot.ReadListEnd(); err != nil {
+  if err := iprot.ReadListEnd(ctx); err != nil {
     return thrift.PrependError("error reading list end: ", err)
   }
   return nil
 }
 
 func (p *RowGroup)  ReadField2(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI64(); err != nil {
+  if v, err := iprot.ReadI64(ctx); err != nil {
   return thrift.PrependError("error reading field 2: ", err)
 } else {
   p.TotalByteSize = v
@@ -6539,7 +6542,7 @@ func (p *RowGroup)  ReadField2(iprot thrift.TProtocol) error {
 }
 
 func (p *RowGroup)  ReadField3(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI64(); err != nil {
+  if v, err := iprot.ReadI64(ctx); err != nil {
   return thrift.PrependError("error reading field 3: ", err)
 } else {
   p.NumRows = v
@@ -6548,7 +6551,7 @@ func (p *RowGroup)  ReadField3(iprot thrift.TProtocol) error {
 }
 
 func (p *RowGroup)  ReadField4(iprot thrift.TProtocol) error {
-  _, size, err := iprot.ReadListBegin()
+  _, size, err := iprot.ReadListBegin(ctx)
   if err != nil {
     return thrift.PrependError("error reading list begin: ", err)
   }
@@ -6561,7 +6564,7 @@ func (p *RowGroup)  ReadField4(iprot thrift.TProtocol) error {
     }
     p.SortingColumns = append(p.SortingColumns, _elem5)
   }
-  if err := iprot.ReadListEnd(); err != nil {
+  if err := iprot.ReadListEnd(ctx); err != nil {
     return thrift.PrependError("error reading list end: ", err)
   }
   return nil
@@ -6659,25 +6662,25 @@ func NewTypeDefinedOrder() *TypeDefinedOrder {
 }
 
 func (p *TypeDefinedOrder) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
     if fieldTypeId == thrift.STOP { break; }
-    if err := iprot.Skip(fieldTypeId); err != nil {
+    if err := iprot.Skip(ctx, fieldTypeId); err != nil {
       return err
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   return nil
@@ -6784,13 +6787,13 @@ func (p *ColumnOrder) IsSetTYPE_ORDER() bool {
 }
 
 func (p *ColumnOrder) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
@@ -6802,20 +6805,20 @@ func (p *ColumnOrder) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
     default:
-      if err := iprot.Skip(fieldTypeId); err != nil {
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
         return err
       }
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   return nil
@@ -6894,7 +6897,7 @@ func (p *PageLocation) GetFirstRowIndex() int64 {
   return p.FirstRowIndex
 }
 func (p *PageLocation) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
@@ -6903,7 +6906,7 @@ func (p *PageLocation) Read(iprot thrift.TProtocol) error {
   var issetFirstRowIndex bool = false;
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
@@ -6916,7 +6919,7 @@ func (p *PageLocation) Read(iprot thrift.TProtocol) error {
         }
         issetOffset = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -6927,7 +6930,7 @@ func (p *PageLocation) Read(iprot thrift.TProtocol) error {
         }
         issetCompressedPageSize = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -6938,20 +6941,20 @@ func (p *PageLocation) Read(iprot thrift.TProtocol) error {
         }
         issetFirstRowIndex = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
     default:
-      if err := iprot.Skip(fieldTypeId); err != nil {
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
         return err
       }
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   if !issetOffset{
@@ -6967,7 +6970,7 @@ func (p *PageLocation) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *PageLocation)  ReadField1(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI64(); err != nil {
+  if v, err := iprot.ReadI64(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
   p.Offset = v
@@ -6976,7 +6979,7 @@ func (p *PageLocation)  ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *PageLocation)  ReadField2(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 2: ", err)
 } else {
   p.CompressedPageSize = v
@@ -6985,7 +6988,7 @@ func (p *PageLocation)  ReadField2(iprot thrift.TProtocol) error {
 }
 
 func (p *PageLocation)  ReadField3(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI64(); err != nil {
+  if v, err := iprot.ReadI64(ctx); err != nil {
   return thrift.PrependError("error reading field 3: ", err)
 } else {
   p.FirstRowIndex = v
@@ -7061,14 +7064,14 @@ func (p *OffsetIndex) GetPageLocations() []*PageLocation {
   return p.PageLocations
 }
 func (p *OffsetIndex) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
   var issetPageLocations bool = false;
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
@@ -7081,20 +7084,20 @@ func (p *OffsetIndex) Read(iprot thrift.TProtocol) error {
         }
         issetPageLocations = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
     default:
-      if err := iprot.Skip(fieldTypeId); err != nil {
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
         return err
       }
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   if !issetPageLocations{
@@ -7104,7 +7107,7 @@ func (p *OffsetIndex) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *OffsetIndex)  ReadField1(iprot thrift.TProtocol) error {
-  _, size, err := iprot.ReadListBegin()
+  _, size, err := iprot.ReadListBegin(ctx)
   if err != nil {
     return thrift.PrependError("error reading list begin: ", err)
   }
@@ -7117,7 +7120,7 @@ func (p *OffsetIndex)  ReadField1(iprot thrift.TProtocol) error {
     }
     p.PageLocations = append(p.PageLocations, _elem6)
   }
-  if err := iprot.ReadListEnd(); err != nil {
+  if err := iprot.ReadListEnd(ctx); err != nil {
     return thrift.PrependError("error reading list end: ", err)
   }
   return nil
@@ -7222,7 +7225,7 @@ func (p *ColumnIndex) IsSetNullCounts() bool {
 }
 
 func (p *ColumnIndex) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
@@ -7232,7 +7235,7 @@ func (p *ColumnIndex) Read(iprot thrift.TProtocol) error {
   var issetBoundaryOrder bool = false;
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
@@ -7245,7 +7248,7 @@ func (p *ColumnIndex) Read(iprot thrift.TProtocol) error {
         }
         issetNullPages = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -7256,7 +7259,7 @@ func (p *ColumnIndex) Read(iprot thrift.TProtocol) error {
         }
         issetMinValues = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -7267,7 +7270,7 @@ func (p *ColumnIndex) Read(iprot thrift.TProtocol) error {
         }
         issetMaxValues = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -7278,7 +7281,7 @@ func (p *ColumnIndex) Read(iprot thrift.TProtocol) error {
         }
         issetBoundaryOrder = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -7288,20 +7291,20 @@ func (p *ColumnIndex) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
     default:
-      if err := iprot.Skip(fieldTypeId); err != nil {
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
         return err
       }
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   if !issetNullPages{
@@ -7320,7 +7323,7 @@ func (p *ColumnIndex) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnIndex)  ReadField1(iprot thrift.TProtocol) error {
-  _, size, err := iprot.ReadListBegin()
+  _, size, err := iprot.ReadListBegin(ctx)
   if err != nil {
     return thrift.PrependError("error reading list begin: ", err)
   }
@@ -7328,21 +7331,21 @@ func (p *ColumnIndex)  ReadField1(iprot thrift.TProtocol) error {
   p.NullPages =  tSlice
   for i := 0; i < size; i ++ {
 var _elem7 bool
-    if v, err := iprot.ReadBool(); err != nil {
+    if v, err := iprot.ReadBool(ctx); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
     _elem7 = v
 }
     p.NullPages = append(p.NullPages, _elem7)
   }
-  if err := iprot.ReadListEnd(); err != nil {
+  if err := iprot.ReadListEnd(ctx); err != nil {
     return thrift.PrependError("error reading list end: ", err)
   }
   return nil
 }
 
 func (p *ColumnIndex)  ReadField2(iprot thrift.TProtocol) error {
-  _, size, err := iprot.ReadListBegin()
+  _, size, err := iprot.ReadListBegin(ctx)
   if err != nil {
     return thrift.PrependError("error reading list begin: ", err)
   }
@@ -7350,21 +7353,21 @@ func (p *ColumnIndex)  ReadField2(iprot thrift.TProtocol) error {
   p.MinValues =  tSlice
   for i := 0; i < size; i ++ {
 var _elem8 []byte
-    if v, err := iprot.ReadBinary(); err != nil {
+    if v, err := iprot.ReadBinary(ctx); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
     _elem8 = v
 }
     p.MinValues = append(p.MinValues, _elem8)
   }
-  if err := iprot.ReadListEnd(); err != nil {
+  if err := iprot.ReadListEnd(ctx); err != nil {
     return thrift.PrependError("error reading list end: ", err)
   }
   return nil
 }
 
 func (p *ColumnIndex)  ReadField3(iprot thrift.TProtocol) error {
-  _, size, err := iprot.ReadListBegin()
+  _, size, err := iprot.ReadListBegin(ctx)
   if err != nil {
     return thrift.PrependError("error reading list begin: ", err)
   }
@@ -7372,21 +7375,21 @@ func (p *ColumnIndex)  ReadField3(iprot thrift.TProtocol) error {
   p.MaxValues =  tSlice
   for i := 0; i < size; i ++ {
 var _elem9 []byte
-    if v, err := iprot.ReadBinary(); err != nil {
+    if v, err := iprot.ReadBinary(ctx); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
     _elem9 = v
 }
     p.MaxValues = append(p.MaxValues, _elem9)
   }
-  if err := iprot.ReadListEnd(); err != nil {
+  if err := iprot.ReadListEnd(ctx); err != nil {
     return thrift.PrependError("error reading list end: ", err)
   }
   return nil
 }
 
 func (p *ColumnIndex)  ReadField4(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 4: ", err)
 } else {
   temp := BoundaryOrder(v)
@@ -7396,7 +7399,7 @@ func (p *ColumnIndex)  ReadField4(iprot thrift.TProtocol) error {
 }
 
 func (p *ColumnIndex)  ReadField5(iprot thrift.TProtocol) error {
-  _, size, err := iprot.ReadListBegin()
+  _, size, err := iprot.ReadListBegin(ctx)
   if err != nil {
     return thrift.PrependError("error reading list begin: ", err)
   }
@@ -7404,14 +7407,14 @@ func (p *ColumnIndex)  ReadField5(iprot thrift.TProtocol) error {
   p.NullCounts =  tSlice
   for i := 0; i < size; i ++ {
 var _elem10 int64
-    if v, err := iprot.ReadI64(); err != nil {
+    if v, err := iprot.ReadI64(ctx); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
     _elem10 = v
 }
     p.NullCounts = append(p.NullCounts, _elem10)
   }
-  if err := iprot.ReadListEnd(); err != nil {
+  if err := iprot.ReadListEnd(ctx); err != nil {
     return thrift.PrependError("error reading list end: ", err)
   }
   return nil
@@ -7612,7 +7615,7 @@ func (p *FileMetaData) IsSetColumnOrders() bool {
 }
 
 func (p *FileMetaData) Read(iprot thrift.TProtocol) error {
-  if _, err := iprot.ReadStructBegin(); err != nil {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
@@ -7622,7 +7625,7 @@ func (p *FileMetaData) Read(iprot thrift.TProtocol) error {
   var issetRowGroups bool = false;
 
   for {
-    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
     if err != nil {
       return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
     }
@@ -7635,7 +7638,7 @@ func (p *FileMetaData) Read(iprot thrift.TProtocol) error {
         }
         issetVersion = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -7646,7 +7649,7 @@ func (p *FileMetaData) Read(iprot thrift.TProtocol) error {
         }
         issetSchema = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -7657,7 +7660,7 @@ func (p *FileMetaData) Read(iprot thrift.TProtocol) error {
         }
         issetNumRows = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -7668,7 +7671,7 @@ func (p *FileMetaData) Read(iprot thrift.TProtocol) error {
         }
         issetRowGroups = true
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -7678,7 +7681,7 @@ func (p *FileMetaData) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -7688,7 +7691,7 @@ func (p *FileMetaData) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
@@ -7698,20 +7701,20 @@ func (p *FileMetaData) Read(iprot thrift.TProtocol) error {
           return err
         }
       } else {
-        if err := iprot.Skip(fieldTypeId); err != nil {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
         }
       }
     default:
-      if err := iprot.Skip(fieldTypeId); err != nil {
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
         return err
       }
     }
-    if err := iprot.ReadFieldEnd(); err != nil {
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
       return err
     }
   }
-  if err := iprot.ReadStructEnd(); err != nil {
+  if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
   }
   if !issetVersion{
@@ -7730,7 +7733,7 @@ func (p *FileMetaData) Read(iprot thrift.TProtocol) error {
 }
 
 func (p *FileMetaData)  ReadField1(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
   p.Version = v
@@ -7739,7 +7742,7 @@ func (p *FileMetaData)  ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *FileMetaData)  ReadField2(iprot thrift.TProtocol) error {
-  _, size, err := iprot.ReadListBegin()
+  _, size, err := iprot.ReadListBegin(ctx)
   if err != nil {
     return thrift.PrependError("error reading list begin: ", err)
   }
@@ -7752,14 +7755,14 @@ func (p *FileMetaData)  ReadField2(iprot thrift.TProtocol) error {
     }
     p.Schema = append(p.Schema, _elem11)
   }
-  if err := iprot.ReadListEnd(); err != nil {
+  if err := iprot.ReadListEnd(ctx); err != nil {
     return thrift.PrependError("error reading list end: ", err)
   }
   return nil
 }
 
 func (p *FileMetaData)  ReadField3(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI64(); err != nil {
+  if v, err := iprot.ReadI64(ctx); err != nil {
   return thrift.PrependError("error reading field 3: ", err)
 } else {
   p.NumRows = v
@@ -7768,7 +7771,7 @@ func (p *FileMetaData)  ReadField3(iprot thrift.TProtocol) error {
 }
 
 func (p *FileMetaData)  ReadField4(iprot thrift.TProtocol) error {
-  _, size, err := iprot.ReadListBegin()
+  _, size, err := iprot.ReadListBegin(ctx)
   if err != nil {
     return thrift.PrependError("error reading list begin: ", err)
   }
@@ -7781,14 +7784,14 @@ func (p *FileMetaData)  ReadField4(iprot thrift.TProtocol) error {
     }
     p.RowGroups = append(p.RowGroups, _elem12)
   }
-  if err := iprot.ReadListEnd(); err != nil {
+  if err := iprot.ReadListEnd(ctx); err != nil {
     return thrift.PrependError("error reading list end: ", err)
   }
   return nil
 }
 
 func (p *FileMetaData)  ReadField5(iprot thrift.TProtocol) error {
-  _, size, err := iprot.ReadListBegin()
+  _, size, err := iprot.ReadListBegin(ctx)
   if err != nil {
     return thrift.PrependError("error reading list begin: ", err)
   }
@@ -7801,14 +7804,14 @@ func (p *FileMetaData)  ReadField5(iprot thrift.TProtocol) error {
     }
     p.KeyValueMetadata = append(p.KeyValueMetadata, _elem13)
   }
-  if err := iprot.ReadListEnd(); err != nil {
+  if err := iprot.ReadListEnd(ctx); err != nil {
     return thrift.PrependError("error reading list end: ", err)
   }
   return nil
 }
 
 func (p *FileMetaData)  ReadField6(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadString(); err != nil {
+  if v, err := iprot.ReadString(ctx); err != nil {
   return thrift.PrependError("error reading field 6: ", err)
 } else {
   p.CreatedBy = &v
@@ -7817,7 +7820,7 @@ func (p *FileMetaData)  ReadField6(iprot thrift.TProtocol) error {
 }
 
 func (p *FileMetaData)  ReadField7(iprot thrift.TProtocol) error {
-  _, size, err := iprot.ReadListBegin()
+  _, size, err := iprot.ReadListBegin(ctx)
   if err != nil {
     return thrift.PrependError("error reading list begin: ", err)
   }
@@ -7830,7 +7833,7 @@ func (p *FileMetaData)  ReadField7(iprot thrift.TProtocol) error {
     }
     p.ColumnOrders = append(p.ColumnOrders, _elem14)
   }
-  if err := iprot.ReadListEnd(); err != nil {
+  if err := iprot.ReadListEnd(ctx); err != nil {
     return thrift.PrependError("error reading list end: ", err)
   }
   return nil
